@@ -2,7 +2,7 @@
  COP4331_Group28_Small_Project
 
 Members:
-Christopher Benjamin Polynice,
+Daanish Habibi,
 Scott Christian McLeod,
 Diego  Conterno,
 Michaela Catherine Green,
