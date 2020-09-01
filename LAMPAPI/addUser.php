@@ -23,13 +23,21 @@ else {
     $phone = mysqli_real_escape_string($conn, $_REQUEST['phone']); // the insert.php has to have "phone"
     $email = mysqli_real_escape_string($conn, $_REQUEST['email']); // the insert.php has to have "email"
 
-    // Attemp to insert query execution
-    $sql = "INSERT INTO Users (Email, Phone, Username, Password) VALUES ('$email', '$phone', '$username', '$password')";
-
-    if (mysqli_query($conn, $sql)) {
-        echo "Records added successfully!";
+    // Check password confirmation in database
+    if (($conn, $_REQUEST['password']) != ($conn, $_REQUEST['confirm_password']))
+    {
+        die("password confirmation failed!" . $conn->connect_error);
     }
-    else {
-        echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+    else
+    {
+        // Attemp to insert query execution
+        $sql = "INSERT INTO Users (Email, Phone, Username, Password) VALUES ('$email', '$phone', '$username', '$password')";
+
+        if (mysqli_query($conn, $sql)) {
+            echo "Records added successfully!";
+        }
+        else {
+            echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+        }
     }
 }
