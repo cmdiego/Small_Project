@@ -28,16 +28,13 @@ else {
     {
         die("password confirmation failed!" . $conn->connect_error);
     }
-    else
-    {
-        // Attemp to insert query execution
-        $sql = "INSERT INTO Users (Email, Phone, Username, Password) VALUES ('$email', '$phone', '$username', '$password')";
+    // Attemp to insert query execution
+    $sql = "INSERT INTO Users (Email, Phone, Username, Password) VALUES ('$email', '$phone', '$username', '$password')";
 
-        if (mysqli_query($conn, $sql)) {
-            echo "Records added successfully!";
-        }
-        else {
-            echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
-        }
+    if (mysqli_query($conn, $sql)) {
+        echo "Records added successfully!";
+    }
+    else {
+        echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
     }
 }
