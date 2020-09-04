@@ -16,13 +16,23 @@
 	}
 	else
 	{
-		echo "Connected successfully!";
+		echo "Connection stablished!";
 
+		// Create SQL query string
 		$sql = "SELECT ID,firstName,lastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "'";
+		// Do query and get results
 		$result = $conn->query($sql);
+
+		// Check number of rows (this can be many entries or just a single one, this case is the latter)
 		if ($result->num_rows > 0)
 		{
-			$row = $result->fetch_assoc();
+			// Parse data in row
+			// fetch_assoc(): 
+			// 					Returns an associative array that corresponds to 
+			// 					the fetched row or NULL if there are no more rows.
+			$row = $result->fetch_assoc();  
+
+			// Select firstName & lastName
 			$firstName = $row["firstName"];
 			$lastName = $row["lastName"];
 			$id = $row["ID"];
@@ -36,6 +46,7 @@
 		$conn->close();
 	}
 	
+	// Get JSON file
 	function getRequestInfo()
 	{
 		return json_decode(file_get_contents('php://input'), true);
@@ -55,7 +66,7 @@
 	
 	function returnWithInfo( $firstName, $lastName, $id )
 	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	

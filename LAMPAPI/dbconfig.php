@@ -1,5 +1,4 @@
 <?
-
 //Define your host here.
 $hostname = "localhost";
 
@@ -12,15 +11,16 @@ $password = "Freeponies28!";
 //Define your database name here.
 $dbname = "iamgroup28_main";
 
-$conn = mysql_connect($hostname, $username, $password);
+// Create connection
+$conn = new mysqli($servername, $dbUsername, $dbPassword, $dbName);
  
-if (!$conn) 
+// Checking conenction
+if ($conn->connect_error)
 {
-
-    die('Could not connect: ' . mysql_error());
-
+    die("Connection failed: " . $conn->connect_error);
 }
-
-mysql_select_db($dbname, $conn);
-
+else
+{
+    echo "Connection established!";
+}
 ?>
