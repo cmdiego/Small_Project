@@ -9,7 +9,7 @@
 	$conn = new mysqli("localhost", "iamthegroup", "Freeponies28!", "iamgroup28_main");
 
 	// Checking conenction
-	if ($conn->connect_error) 
+	if ($conn->connect_error)
 	{
 		echo "Connection failed!";
 		returnWithError( $conn->connect_error );

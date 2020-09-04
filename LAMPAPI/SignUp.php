@@ -12,10 +12,12 @@ $username = $password = $confirm_password = $phone = $email = "";
 $conn = new mysqli($servername, $dbUsername, $dbPassword, $dbName);
 
 // Check connection
-if ($conn->connect_error) {
+if ($conn->connect_error)
+{
     die("Connection failed: " . $conn->connect_error);
 }
-else {
+else
+{
     // Q&A: Do we use _POST, _GET, or _REQUEST?
     $username = mysqli_real_escape_string($conn, $_REQUEST['username']); // the insert.php has to have "username"
     $password = mysqli_real_escape_string($conn, $_REQUEST['password']); // the insert.php has to have "password"
