@@ -1,9 +1,9 @@
 <?php
 
 $serverName = "localhost";
-$dbUsername = "iamthegroup";
+$dbUsername = "iamgroup_admin";
 $dbPassword = "Freeponies28!";
-$dbName = "iamgroup28_main";
+$dbName = "iamgroup_main";
 
 // Store JSON file in var inData
 $inData = getRequestInfo();
