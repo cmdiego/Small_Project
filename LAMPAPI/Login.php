@@ -6,7 +6,7 @@
 	$firstName = "";
 	$lastName = "";
 
-	$conn = new mysqli("localhost", "iamthegroup", "Freeponies28!", "iamgroup28_main");
+	$conn = new mysqli("localhost", "iamgroup_admin", "Freeponies28!", "iamgroup_main");
 
 	// Checking conenction
 	if ($conn->connect_error)
@@ -16,7 +16,7 @@
 	}
 	else
 	{
-		echo "Connection stablished!";
+		// echo "Connection established!";
 
 		// Create SQL query string
 		$sql = "SELECT ID,firstName,lastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "'";
