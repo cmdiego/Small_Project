@@ -1,40 +1,52 @@
 <?php
 
-$servername = "localhost";
+$serverName = "localhost";
 $dbUsername = "iamthegroup";
 $dbPassword = "Freeponies28!";
 $dbName = "iamgroup28_main";
 
-// Define variables and initialize with empty values
-$username = $password = $confirm_password = $phone = $email = "";
+// Store JSON file in var inData
+$inData = getRequestInfo();
 
-// Create connection
-$conn = new mysqli($servername, $dbUsername, $dbPassword, $dbName);
+// Store the data in vars
+$login = $inData["login"];
+$password = $inData["password"];
+$phone = $inData["phone"];
+$email = $inData["email"];
+$firstName = $inData["firstName"];
+$lastName = $inData["lastName"];
+
+// Specifies the MySQL connection to use
+$conn = new mysqli($serverName, $dbUsername, $dbPassword, $dbName);
 
 // Check connection
-if ($conn->connect_error) {
+if ($conn->connect_error)
+{
     die("Connection failed: " . $conn->connect_error);
 }
-else {
-    // Q&A: Do we use _POST, _GET, or _REQUEST?
-    $username = mysqli_real_escape_string($conn, $_REQUEST['username']); // the insert.php has to have "username"
-    $password = mysqli_real_escape_string($conn, $_REQUEST['password']); // the insert.php has to have "password"
-    $confirm_password = mysqli_real_escape_string($conn, $_REQUEST['confirm_password']); // the insert.php has to have "confirm_password"
-    $phone = mysqli_real_escape_string($conn, $_REQUEST['phone']); // the insert.php has to have "phone"
-    $email = mysqli_real_escape_string($conn, $_REQUEST['email']); // the insert.php has to have "email"
+else
+{
+    echo "Connection stablished!";
 
-    // Check password confirmation in database
-    if (($conn, $_REQUEST['password']) != ($conn, $_REQUEST['confirm_password']))
+    // SQL query string
+    $sql = "INSERT INTO Users (email, phone, login, password, firstName, lastName) 
+    VALUES ('$email', '$phone', '$login', '$password', '$firstName', '$lastName')";
+
+    $result = $conn->query($sql);
+    if ($result)
     {
-        die("password confirmation failed!" . $conn->connect_error);
+        echo "User{ $firstName} {$lastName} was successfully added to the database";
     }
-    // Attemp to insert query execution
-    $sql = "INSERT INTO Users (Email, Phone, Username, Password) VALUES ('$email', '$phone', '$username', '$password')";
-
-    if (mysqli_query($conn, $sql)) {
-        echo "Records added successfully!";
+    else
+    {
+        echo "Error: " . $sql . "" . mysql_error($conn);
     }
-    else {
-        echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
-    }
+    $conn->close();
 }
+
+function getRequestInfo()
+{
+    return json_decode(file_get_contents('php://input'), true);
+}
+
+?>
