@@ -26,7 +26,7 @@ if ($conn->connect_error)
 }
 else
 {
-    echo "Connection stablished!";
+    echo "Connection established!";
 
     // SQL query string
     $sql = "INSERT INTO Users (email, phone, login, password, firstName, lastName) 
