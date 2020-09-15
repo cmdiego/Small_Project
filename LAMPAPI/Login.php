@@ -3,23 +3,23 @@
 	$inData = getRequestInfo();
 	
 	$id = 0;
-	$firstName = "";
-	$lastName = "";
 
 	$conn = new mysqli("localhost", "iamgroup_admin", "Freeponies28!", "iamgroup_main");
 
 	// Checking conenction
 	if ($conn->connect_error)
 	{
-		echo "Connection failed!";
+		// echo "Connection failed!";
 		returnWithError( $conn->connect_error );
 	}
 	else
 	{
-		// echo "Connection established!";
+		echo "Connection established!";
 
 		// Create SQL query string
-		$sql = "SELECT ID,firstName,lastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "'";
+		$sql = "SELECT ID, login FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "'";
+
+		
 		// Do query and get results
 		$result = $conn->query($sql);
 
@@ -32,12 +32,12 @@
 			// 					the fetched row or NULL if there are no more rows.
 			$row = $result->fetch_assoc();  
 
-			// Select firstName & lastName
-			$firstName = $row["firstName"];
-			$lastName = $row["lastName"];
-			$id = $row["ID"];
 			
-			returnWithInfo($firstName, $lastName, $id );
+			// Select firstName & lastName
+			$id = $row["ID"];
+			$login = $row["login"];
+
+			returnWithInfo($id, $login);
 		}
 		else
 		{
@@ -60,14 +60,15 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"id":0,"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function returnWithInfo( $firstName, $lastName, $id )
+	function returnWithInfo($id, $login)
 	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '"}';
-		sendResultInfoAsJson( $retValue );
+		$retValue = '{"ID" :' . $id . ',"Login" :"' . $login . '"}'; // ? For some reason login and id are switched in the display
+
+		sendResultInfoAsJson($retValue);
 	}
 	
 ?>
