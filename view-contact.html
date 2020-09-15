@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- COP4331 Fall 2020
+     Small Group Project Index Page
+     Group #28 -->
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link href="./img/favicon.png" rel="shortcut icon"/>
+    <title>Creamie Contacts - Search for Contacts</title>
+    <meta charset="utf-8"/>
+   
+</head>
+<body>
+    <img src="./img/decorative-banner.png" class="decorative-banner">
+
+    <div class="content-background">
+        <div class="nav-bar">
+            <div class="nav-align">
+                <a href="index.html" class="nav-text">Home</a>
+                <p class="nav-text">|</p>
+                <a href="about.html" class="nav-text">About</a>
+                <p class="nav-text">|</p>
+                <a href="contact-us.html" class="nav-text">Contact us</a>
+                <p class="nav-text">|</p>
+                <a href="index.html" class="nav-text">Log out</a>
+            </div>
+        </div>
+
+        <img src="./img/featured-image.png" class="featured-image">
+
+        <p class="website-logo">{Creamie <br>Contacts}</p>
+
+        <div class="website-content">
+
+            <p class="instruction-prompt-1">You are currently viewing a contact. <br>What would you like to do?</p>
+
+            <div class="user-input">
+                
+                <button type="button" id="contactUpdateButtton" class="btn btn-primary" onclick="window.location.href='update-contact.html'">Update contact</button>
+
+                <button type="button" id="contactDeleteButtton" class="btn btn-primary" onclick="deleteContact();">Delete contact</button>
+
+                <div class="spacing"></div>
+                
+                <button type="button" id="returnButtton" class="btn btn-primary" onclick="window.location.href='home.html'">Return</button>
+            </div>
+
+            <p class="cute-heart">-- ♡ --</p>
+        </div>
+    </div>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/utility.js"></script>
+</body>
+</html>

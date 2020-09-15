@@ -7,7 +7,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link href="./img/favicon.png" rel="shortcut icon"/>
-    <title>Creamie Contacts - Home</title>
+    <title>Creamie Contacts - Search for Contacts</title>
     <meta charset="utf-8"/>
    
 </head>
@@ -17,13 +17,13 @@
     <div class="content-background">
         <div class="nav-bar">
             <div class="nav-align">
-                <a href="#" class="nav-text">Home</a>
+                <a href="index.html" class="nav-text">Home</a>
                 <p class="nav-text">|</p>
                 <a href="about.html" class="nav-text">About</a>
                 <p class="nav-text">|</p>
                 <a href="contact-us.html" class="nav-text">Contact us</a>
                 <p class="nav-text">|</p>
-                <a href="signup.html" class="nav-text">Sign up</a>
+                <a href="index.html" class="nav-text">Log out</a>
             </div>
         </div>
 
@@ -31,30 +31,23 @@
 
         <p class="website-logo">{Creamie <br>Contacts}</p>
 
-        <div id="loginDiv">
+        <div class="website-content">
 
-            <div class="website-content">
+            <p class="instruction-prompt-1">Welcome to Creamie Contacts! <br>How can we help you manage <br>your contacts today?</p>
 
-                <p class="website-bio">Let us help you plan <br>your next sweet <br>event!</p>
+            <div class="user-input">
+                <button type="button" id="addContactButtton" class="btn btn-primary" onclick="window.location.href='add-contact.html'">Add contact</button>
 
-                <div class="user-input">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="loginName" placeholder="Username">  
-                    </div>
+                <button type="button" id="searchContactsButtton" class="btn btn-primary" onclick="window.location.href='search-contact.html'">Search contacts</button>
 
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="loginPassword" placeholder="Password">
-                    </div>
+                <div class="spacing"></div>
                 
-                    <span id="loginResult"></span>
+                <button type="button" id="browseContactsButtton" class="btn btn-primary" onclick="window.location.href='browse-contacts.html'">Browse contacts</button>
 
-                    <button type="button" id="loginButton" class="btn btn-primary" onclick="doLogin();">Log in</button>
-
-                    <div class="signup-toggle"><br>Don't have an account? <a href="signup.html">Sign up now.</a></div>
-                </div>
-                
-                <p class="cute-heart">-- ♡ --</p>
+                <button type="button" id="logoutButtton" class="btn btn-primary" onclick="doLogout();">Log out</button>
             </div>
+
+            <p class="cute-heart">-- ♡ --</p>
         </div>
     </div>
 

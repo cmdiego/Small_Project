@@ -41,6 +41,165 @@
   box-sizing: border-box;
 }
 
+/*-------- Non-Bootstrap CSS --------*/
+
+a.nohover:hover {
+  color: none;
+}
+
+.decorative-banner {
+  top: -100px;
+  max-height: 15%;
+  max-width: 100%;
+  position: relative;
+}
+
+.content-background {
+  background-color: rgba(255, 255, 255, 1.0);
+  height: 82.5%;
+  width: 86%;
+  left: 7%;
+  top: 15%;
+  border-radius: 15px;
+  position: absolute;
+}
+
+.nav-bar {
+  background-color: rgba(255, 202, 202, 1.0);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  width: 100%;
+  height: 7%;
+}
+
+.nav-align {
+  margin-left: 7%;
+  margin-right: 7%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-text {
+  color: rgba(255, 255, 255, 1.0);
+  font-size: 200%;
+  font-family: "Shink";
+  text-decoration: none;
+}
+
+.featured-image {
+  max-width: 100%;
+  max-height: 93%;
+  border-bottom-left-radius: 15px;
+  float: left;
+}
+
+.website-content {
+  float: center;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 3%;
+}
+
+.website-logo {
+  color: rgba(255, 160, 160, 1.0);
+  font-size: 300%;
+  font-family: "Shink";
+  line-height: 80%;
+  margin-top: 2%;
+  margin-right: 1%;
+  text-align: right;
+}
+
+.website-bio {
+  color: rgba(113, 93, 93, 1.0);
+  font-size: 225%;
+  font-family: "Shink";
+  line-height: 90%;
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.website-bio-3 {
+  color: rgba(113, 93, 93, 1.0);
+  font-size: 225%;
+  font-family: "Shink";
+  line-height: 90%;
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 3.7%;
+}
+
+.about-bio {
+  color: rgba(113, 93, 93, 1.0);
+  font-size: 120%;
+  text-align: left;
+  margin-top: 5%;
+  margin-bottom: 13%;
+}
+
+.instruction-prompt {
+  color: rgba(113, 93, 93, 1.0);
+  font-size: 120%;
+  text-align: center;
+  margin-top: 3%;
+  margin-bottom: 0.75%;
+}
+
+.instruction-prompt-1 {
+  color: rgba(113, 93, 93, 1.0);
+  font-size: 120%;
+  text-align: center;
+  margin-top: 8%;
+  margin-bottom: 8.5%;
+}
+
+.contact {
+  margin-bottom: 26%;
+}
+
+.user-input {
+  width: 30%;
+  display: inline-block;
+  text-align: center;
+  margin-left: 12.5%;
+  margin-top: 3%;
+  margin-bottom: 1%;
+}
+
+.user-input-3 {
+  width: 30%;
+  display: inline-block;
+  text-align: center;
+  margin-left: 12.5%;
+  margin-top: 0%;
+  margin-bottom: 1%;
+}
+
+.signup-toggle {
+  font-size: 80%;
+  color: rgba(204, 204, 204, 1.0);
+  line-height: 80%
+}
+
+.social-media-icon {
+  height: 20%;
+  width: 20%;
+}
+
+.cute-heart {
+  color: rgba(113, 93, 93, 1.0);
+  font-size: 300%;
+  font-family: "Shink";
+  text-align: center;
+}
+
+.spacing {
+  margin-top: 1.5%;
+}
+
+/*-------- Back to Bootstrap CSS --------*/
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -60,7 +219,8 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff;
+  background-color: rgba(255, 241, 243, 1.0);
+  overflow: hidden;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -225,6 +385,7 @@ label {
 
 button {
   border-radius: 0;
+  width: 25%;
 }
 
 button:focus {
@@ -2543,21 +2704,19 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: rgba(255, 202, 202, 1.0);
+  width: 38%;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #0069d9;
-  border-color: #0062cc;
+  background-color: rgba(255, 160, 160, 1.0);
 }
 
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #0069d9;
-  border-color: #0062cc;
-  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+  background-color: rgba(255, 160, 160, 1.0);
+  box-shadow: 0 0 0 0.2rem rgba(255, 160, 160, 0.5);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
@@ -2569,13 +2728,12 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #0062cc;
-  border-color: #005cbf;
+  background-color: rgba(255, 202, 202, 1.0);
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+  ox-shadow: 0 0 0 0.2rem rgba(255, 160, 160, 0.5);
 }
 
 .btn-secondary {
