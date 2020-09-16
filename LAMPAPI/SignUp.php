@@ -11,10 +11,6 @@ $inData = getRequestInfo();
 // Store the data in vars
 $login = $inData["login"];
 $password = $inData["password"];
-$phone = $inData["phone"];
-$email = $inData["email"];
-$firstName = $inData["firstName"];
-$lastName = $inData["lastName"];
 
 // Specifies the MySQL connection to use
 $conn = new mysqli($serverName, $dbUsername, $dbPassword, $dbName);
@@ -26,16 +22,16 @@ if ($conn->connect_error)
 }
 else
 {
-    echo "Connection stablished!";
+    echo "Connection established!";
 
     // SQL query string
-    $sql = "INSERT INTO Users (email, phone, login, password, firstName, lastName) 
-    VALUES ('$email', '$phone', '$login', '$password', '$firstName', '$lastName')";
+    $sql = "INSERT INTO Users (login, password) 
+    VALUES ('$login', '$password')";
 
     $result = $conn->query($sql);
     if ($result)
     {
-        echo "User{ $firstName} {$lastName} was successfully added to the database";
+        echo "User . '$login' was successfully added to the database";
     }
     else
     {

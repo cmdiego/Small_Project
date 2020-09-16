@@ -3,13 +3,13 @@
 $hostname = "localhost";
 
 //Define your database username here.
-$username = "iamthegroup";
+$username = "iamgroup_admin";
 
 //Define your database password here.
 $password = "Freeponies28!";
 
 //Define your database name here.
-$dbname = "iamgroup28_main";
+$dbname = "iamgroup_main";
 
 // Create connection
 $conn = new mysqli($servername, $dbUsername, $dbPassword, $dbName);
