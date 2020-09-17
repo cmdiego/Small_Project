@@ -27,18 +27,17 @@ if ($conn->connect_error)
 }
 else
 {
-    $sql = "SELECT firstName, lastName, userID FROM Contacts WHERE firstName = '$firstName' and lastName = '$lastName' and userID = '$userID'";
+    $sql = "SELECT firstName, lastName, userID FROM Contacts WHERE firstName = '$firstName' and lastName = '$lastName' and userID = $userID";
     
     $result = $conn->query($sql);
-    
+
     if($result->num_rows > 0)
     {
-      echo "CONTACT ALREADY EXIST" . mysql_error($conn);
+      returnWithError("CONTACT ALREADY EXIST");
     }
     else 
     {
-      $sql = "INSERT INTO Contacts (firstName, lastName, phone, email, userID) 
-              VALUES ('".$firstName."','".$lastName."','".$phone."','".$email."',".$userID.")";
+      $sql = "INSERT INTO Contacts (firstName, lastName, phone, email, userID) VALUES ('$firstName', '$lastName', '$phone', '$email', $userID)";
 
       $result = $conn->query($sql);
 
@@ -52,7 +51,7 @@ else
       }
 
       $sql = "SELECT ID FROM Contacts WHERE firstName = '$firstName' and lastName = '$lastName' and userID = '$userID'";
-      
+
       // Do query and get results
       $result = $conn->query($sql);
 

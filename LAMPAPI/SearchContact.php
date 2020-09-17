@@ -24,7 +24,7 @@ if ($conn->connect_error)
 else
 {
     $sql = "SELECT firstName, lastName FROM Contacts WHERE firstName LIKE '%" . $firstName . 
-    "%' AND userID = " . $userID;
+    "%' AND lastName LIKE '%" . $lastName . "%' AND userID = " . $userID;
 
     $result = $conn->query($sql);
 
@@ -37,7 +37,7 @@ else
                 $searchResults .= ",";
             }
             $searchCount++;
-            $searchResults .= '"' .$row["firstName"] . '"';
+            $searchResults .= '"' .$row["firstName"] . ' ' . $row["lastName"] .'"';
         }
     }
     else
