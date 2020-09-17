@@ -13,7 +13,8 @@ $firstName = $inData["firstName"];
 $lastName = $inData["lastName"];
 $phone = $inData["phone"];
 $email = $inData["email"];
-// This is the user who's adding the contact
+// User's ID that added the contact. 
+// Similar to AddContact.
 $id = $inData["ID"];
 
 // Specifies the MySQL connection to use
@@ -26,13 +27,13 @@ if ($conn->connect_error)
 }
 
 // Check if User is in the contact list
-$sql = "SELECT firstName, lastName, ID FROM Contacts WHERE firstName = '$firstName' AND lastName = '$lastName' AND ID = $id";
+$sql = "SELECT firstName, lastName, userID FROM Contacts WHERE firstName = '$firstName' AND lastName = '$lastName' AND userID = $id";
 
 $result = $conn->query($sql);
 
 if($result->num_rows > 0)
 {
-  $sql = "DELETE FROM Contacts WHERE ID = $id AND firstName = '$firstName' AND lastName = '$lastName'";
+  $sql = "DELETE FROM Contacts WHERE userID = $id AND firstName = '$firstName' AND lastName = '$lastName'";
 
   // Run query against database
   $conn->query($sql);

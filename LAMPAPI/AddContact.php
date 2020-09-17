@@ -65,7 +65,7 @@ else
         // 					the fetched row or NULL if there are no more rows.
         $row = $result->fetch_assoc();  
 			
-        // Select firstName & lastName
+        // Select the ID assigned to the newly added contact
         $id = $row["ID"];
 
         returnWithInfo($id);
