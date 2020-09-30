@@ -23,7 +23,7 @@
             <div class="col-md-10 content-background">
                 <div class="row">
                     <div class="col-md-12 nav-bar">
-                        <a href="contacts-home.html"><img src="./img/home.png"></a><img src="./img/divider.png" class="divider">
+                        <a href="#"><img src="./img/home.png"></a><img src="./img/divider.png" class="divider">
                         <a href="about.html"><img src="./img/about.png"></a><img src="./img/divider.png" class="divider">
                         <a href="contact-us.html"><img src="./img/contact-us.png"></a><img src="./img/divider.png" class="divider">
                         <a href="index.html"><img src="./img/logout.png" class="divider"></a>
@@ -35,20 +35,18 @@
                     </div>
                     <div class="col-md-6" style="vertical-align: center;">
                         <img src="./img/creamie-contacts-logo.png" class="website-logo">
-                        <p class="instruction-prompt" style="margin-top: 22.4%; margin-bottom: 9%; clear: right;">You are updating your previously <br>selected contact. Enter current <br>information for all fields even if the information remains the same.</p>
+                        <p class="instruction-prompt" style="margin-top: 26.25%; margin-bottom: 25%; clear: right;">Welcome to Creamie Contacts! <br>How can we help you manage <br>your contacts today?</p>
 
                         <div class="row justify-content-center">
-                            <input type="text" class="form-control" id="contactFirstName" placeholder="First name" style="max-width: 70%; margin-bottom: 2%;">
-                            <input type="text" class="form-control" id="contactLastName" placeholder="Last name" style="max-width: 70%; margin-bottom: 2%;">
-                            <input type="text" class="form-control" id="contactPhone" placeholder="Phone number" style="max-width: 70%; margin-bottom: 2%;">
-                            <input type="text" class="form-control" id="contactEmail" placeholder="Email address" style="max-width: 70%; margin-bottom: 2%;">
-
-                            <span id="contactUpdateResult"></span>
-
-                            <button type="button" id="updateContactButton" class="btn btn-primary" onclick="modifyContact();">Update contact</button>
+                            <button type="button" id="addContactButtton" class="btn btn-primary" onclick="window.location.href='add-contact.html'" style="margin-right: 1%; max-width: 23%;">Add contact</button>
+                            <button type="button" id="searchContactsButtton" class="btn btn-primary" onclick="window.location.href='search-contacts.html'" style="max-width: 23%;">Search contacts</button><br>
                         </div>
 
-                        <p class="cute-heart" style="margin-top: 1%; margin-bottom: -5%;">-- ♡ --</p>
+                        <div class="row justify-content-center" style="margin-top: 1%; margin-bottom: 7%;">
+                            <button type="button" id="browseContactsButtton" class="btn btn-primary" onclick="window.location.href='browse-contacts.html'" style="margin-right: 2%; max-width: 23%;">Browse contacts</button><br>
+                        </div>
+
+                        <p class="cute-heart" style="margin-bottom: -5%;">-- ♡ --</p>
                     </div>
                 </div>    
             </div>

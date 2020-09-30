@@ -6,60 +6,58 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/creamie-contacts.css">
     <link href="./img/favicon.png" rel="shortcut icon"/>
     <title>Creamie Contacts - Home</title>
     <meta charset="utf-8"/>
    
 </head>
-<body>
+<body style="background-color: rgba(255, 241, 243, 1.0);">
     <img src="./img/decorative-banner.png" class="decorative-banner">
 
-    <div class="content-background">
-        <div class="nav-bar">
-            <div class="nav-align">
-                <a href="index.html" class="nav-text">Home</a>
-                <p class="nav-text">|</p>
-                <a href="about.html" class="nav-text">About</a>
-                <p class="nav-text">|</p>
-                <a href="contact-us.html" class="nav-text">Contact us</a>
-                <p class="nav-text">|</p>
-                <a href="index.html" class="nav-text">Log in</a>
-            </div>
+    <div class="container-fluid">
+        <div class="row">
         </div>
-
-        <img src="./img/featured-image.png" class="featured-image">
-
-        <p class="website-logo">{Creamie <br>Contacts}</p>
-
-        <div class="website-content">
-
-            <p class="website-bio-3">Let us help you plan <br>your next sweet <br>event!</p>
-
-            <div class="user-input-3">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="loginName" placeholder="Username">  
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 content-background">
+                <div class="row">
+                    <div class="col-md-12 nav-bar">
+                        <a href="index.html"><img src="./img/home.png"></a><img src="./img/divider.png" class="divider">
+                        <a href="about.html"><img src="./img/about.png"></a><img src="./img/divider.png" class="divider">
+                        <a href="contact-us.html"><img src="./img/contact-us.png"></a><img src="./img/divider.png" class="divider">
+                        <a href="index.html"><img src="./img/login.png" class="divider"></a>
+                    </div>
                 </div>
+                <div class="row" style="margin-left: -30px">
+                    <div class="col-md-6">
+                        <img src="./img/featured-image.png" class="featured-image">
+                    </div>
+                    <div class="col-md-6" style="vertical-align: center;">
+                        <img src="./img/creamie-contacts-logo.png" class="website-logo">
+                        <p style="color: white; clear: right;"></p>
+                        <img src="./img/home-page-text.png" class="website-bio" style="margin-top: 5%; margin-bottom: 10.25%; clear: left;">
 
-                <div class="form-group">
-                    <input type="password" class="form-control" id="loginPassword" placeholder="Password">
-                </div>
+                        <div class="row justify-content-center">
+                            <input type="text" class="form-control" id="loginName" placeholder="Username" style="max-width: 70%; margin-bottom: 2%;"> 
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" style="max-width: 70%; margin-bottom: 2%">
+                            <input type="password" class="form-control" id="loginPasswordConfirm" placeholder="Confirm password" style="max-width: 70%;">
 
-                <div class="form-group">
-                    <input type="password" class="form-control" id="loginPasswordConfirm" placeholder="Confirm password">
-                </div>
-              
-                <span id="signupResult"></span>
+                            <span id="signupResult"></span>
 
-                <button type="button" id="signupButton" class="btn btn-primary" onclick="doSignup();">Sign up</button>
+                            <button type="button" id="signupButton" class="btn btn-primary" onclick="doSignup();" style="font-weight: bold; margin-top: 2%;">Sign up</button><br>
+                        </div>
 
+                        <p class="signup-toggle"><br>Already have an account? <a href="index.html">Log in now.</a></p>
 
-                <div class="signup-toggle"><br>Already have an account? <a href="index.html">Log in now.</a></div>
-
+                        <p class="cute-heart" style="margin-bottom: -10%;">-- ♡ --</p>
+                    </div>
+                </div>    
             </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
 
-            <p class="cute-heart">-- ♡ --</p>
-      </div>
-  </div>
 
 <script src="/js/jquery-3.5.1.min.js"></script>
 <script src="/js/bootstrap.bundle.min.js"></script>

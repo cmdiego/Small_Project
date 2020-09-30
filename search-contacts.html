@@ -35,20 +35,38 @@
                     </div>
                     <div class="col-md-6" style="vertical-align: center;">
                         <img src="./img/creamie-contacts-logo.png" class="website-logo">
-                        <p class="instruction-prompt" style="margin-top: 22.4%; margin-bottom: 9%; clear: right;">You are updating your previously <br>selected contact. Enter current <br>information for all fields even if the information remains the same.</p>
+                        <p class="instruction-prompt" style="margin-top: 26.25%; margin-bottom: 25%;">Please enter a first or last name to <br>search through your contacts. <br>Partial matches will be shown.</p>
 
                         <div class="row justify-content-center">
-                            <input type="text" class="form-control" id="contactFirstName" placeholder="First name" style="max-width: 70%; margin-bottom: 2%;">
-                            <input type="text" class="form-control" id="contactLastName" placeholder="Last name" style="max-width: 70%; margin-bottom: 2%;">
-                            <input type="text" class="form-control" id="contactPhone" placeholder="Phone number" style="max-width: 70%; margin-bottom: 2%;">
-                            <input type="text" class="form-control" id="contactEmail" placeholder="Email address" style="max-width: 70%; margin-bottom: 2%;">
-
-                            <span id="contactUpdateResult"></span>
-
-                            <button type="button" id="updateContactButton" class="btn btn-primary" onclick="modifyContact();">Update contact</button>
+                            <input type="text" class="form-control" id="firstName" placeholder="First Name" style="max-width: 70%; margin-bottom: 2%">
+                            <input type="text" class="form-control" id="lastName" placeholder="Last Name" style="max-width: 70%; margin-bottom: 2%">
+                            <span id="contactSearchResult"></span>
+                            <button type="button" id="searchContactButton" class="btn btn-primary" onclick="searchContacts();">Search contacts</button>
                         </div>
 
-                        <p class="cute-heart" style="margin-top: 1%; margin-bottom: -5%;">-- ♡ --</p>
+                        <div class="row justify-content-center" style="margin-left: 10%; margin-right: 10%; margin-top: 22%;">
+                            <div class="table-scroll" style="height: 40vh;">
+                                <table class="table table-sm table-hover text-center">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="table-danger">Search Results</th>
+                                            <th scope="col" class="table-danger">  </th>
+                                            <th scope="col" class="table-danger">  </th>
+                                            
+                                        </tr>
+                                    </thead> 
+                                    
+                                    <tbody id="searchResults">
+                                                                    
+                                    </tbody>
+                            
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div id="modifyContactFields">
+                        </div>
+                        <p class="cute-heart" style="margin-top: 5.9%; margin-bottom: -5%;">-- ♡ --</p>
                     </div>
                 </div>    
             </div>

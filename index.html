@@ -6,57 +6,57 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/creamie-contacts.css">
     <link href="./img/favicon.png" rel="shortcut icon"/>
     <title>Creamie Contacts - Home</title>
     <meta charset="utf-8"/>
    
 </head>
-<body>
+<body style="background-color: rgba(255, 241, 243, 1.0);">
     <img src="./img/decorative-banner.png" class="decorative-banner">
 
-    <div class="content-background">
-        <div class="nav-bar">
-            <div class="nav-align">
-                <a href="#" class="nav-text">Home</a>
-                <p class="nav-text">|</p>
-                <a href="about.html" class="nav-text">About</a>
-                <p class="nav-text">|</p>
-                <a href="contact-us.html" class="nav-text">Contact us</a>
-                <p class="nav-text">|</p>
-                <a href="signup.html" class="nav-text">Sign up</a>
-            </div>
+    <div class="container-fluid">
+        <div class="row">
         </div>
-
-        <img src="./img/featured-image.png" class="featured-image">
-
-        <p class="website-logo">{Creamie <br>Contacts}</p>
-
-        <div id="loginDiv">
-
-            <div class="website-content">
-
-                <p class="website-bio">Let us help you plan <br>your next sweet <br>event!</p>
-
-                <div class="user-input">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="loginName" placeholder="Username">  
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 content-background">
+                <div class="row">
+                    <div class="col-md-12 nav-bar">
+                        <a href="#"><img src="./img/home.png"></a><img src="./img/divider.png" class="divider">
+                        <a href="about.html"><img src="./img/about.png"></a><img src="./img/divider.png" class="divider">
+                        <a href="contact-us.html"><img src="./img/contact-us.png"></a><img src="./img/divider.png" class="divider">
+                        <a href="signup.html"><img src="./img/signup.png" class="divider"></a>
                     </div>
-
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="loginPassword" placeholder="Password">
-                    </div>
-                
-                    <span id="loginResult"></span>
-
-                    <button type="button" id="loginButton" class="btn btn-primary" onclick="doLogin();">Log in</button>
-
-                    <div class="signup-toggle"><br>Don't have an account? <a href="signup.html">Sign up now.</a></div>
                 </div>
-                
-                <p class="cute-heart">-- ♡ --</p>
+                <div class="row" style="margin-left: -30px">
+                    <div class="col-md-6">
+                        <img src="./img/featured-image.png" class="featured-image">
+                    </div>
+                    <div class="col-md-6" style="vertical-align: center;">
+                        <img src="./img/creamie-contacts-logo.png" class="website-logo">
+                        <p style="color: white; clear: right;"></p>
+                        <img src="./img/home-page-text.png" class="website-bio" style="margin-top: 5%; margin-bottom: 18.5%; clear: left;">
+
+                        <div class="row justify-content-center">
+                            <input type="text" class="form-control" id="loginName" placeholder="Username" style="max-width: 70%; margin-bottom: 2%;"> 
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" style="max-width: 70%;">
+
+                            <span id="loginResult"></span>
+
+                            <button type="button" id="loginButton" class="btn btn-primary" onclick="doLogin();" style="font-weight: bold; margin-top: 2%;">Log in</button><br>
+                        </div>
+
+                        <p class="signup-toggle"><br>Don't have an account? <a href="signup.html">Sign up now.</a></p>
+
+                        <p class="cute-heart" style="margin-bottom: -10%;">-- ♡ --</p>
+                    </div>
+                </div>    
             </div>
+            <div class="col-md-1"></div>
         </div>
     </div>
+
 
 <script src="/js/jquery-3.5.1.min.js"></script>
 <script src="/js/bootstrap.bundle.min.js"></script>
