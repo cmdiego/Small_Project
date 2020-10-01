@@ -33,27 +33,103 @@ $sql = "SELECT userID, firstName, lastName FROM Contacts WHERE userID = $userID 
 
 $result = $conn->query($sql);
 
-if($result->num_rows > 0)
+if ($result->num_rows > 0)
 {
   // This changes all values that are different from the input. For values that aren't updated, this keeps them the same as they were previously. 
   // Only changes the contacts whose ID and userID are correct.
   
-  
-  unset($sql);
-  
-  $sql = "UPDATE Contacts SET firstName = '$firstName', lastName = '$lastName', phone = '$phone', email = '$email' WHERE firstName = '$oldFirst' AND lastName = '$oldLast' AND userID = '$userID'";
-  
-  $result = $conn->query($sql);
- 
-  if ($result)
+  if ($phone != "")
   {
-        echo "User . '$firstName' . '$lastName' has had their database entry updated!";
-     
+      $sql = "UPDATE Contacts SET phone = '$phone' WHERE firstName = '$oldFirst' AND lastName = '$oldLast' AND userID = '$userID'";
+      $result = $conn->query($sql);
+      if ($result)
+      {
+          echo "User's phone number updated!'";
+      }
+      else
+      {
+          echo "Error: " . $sql . "" . mysql_error($conn);
+      }
   }
-  else
+  
+  if ($email != "")
   {
-        echo "Error: " . $sql . "" . mysql_error($conn);
+      $sql = "UPDATE Contacts SET email = '$email' WHERE firstName = '$oldFirst' AND lastName = '$oldLast' AND userID = '$userID'";
+      $result = $conn->query($sql);
+      if ($result)
+      {
+          echo "User's email updated!'";
+      }
+      else
+      {
+          echo "Error: " . $sql . "" . mysql_error($conn);
+      }
   }
+  
+  $tmp = "";
+  
+  if ($firstName != "" || $lastName != "")
+  {
+      if ($firstName != "" && $lastName != "")
+      {
+          $sql = "UPDATE Contacts SET firstName = '$firstName', lastName = '$lastName' WHERE firstName = '$oldFirst' AND lastName = '$oldLast' AND userID = '$userID'";
+          $result = $conn->query($sql);
+          if ($result)
+          {
+              echo "User's first and last name updated!'";
+          }
+          else
+          {
+              echo "Error: " . $sql . "" . mysql_error($conn);
+          }
+      }
+      else
+      {
+          if ($firstName != "")
+          {
+              $sql = "UPDATE Contacts SET firstName = '$firstName' WHERE firstName = '$oldFirst' AND lastName = '$oldLast' AND userID = '$userID'";
+              $result = $conn->query($sql);
+              if ($result)
+              {
+                  echo "User's first name updated!'";
+              }
+              else
+              {
+                  echo "Error: " . $sql . "" . mysql_error($conn);
+              }
+              $tmp = "firstupdated";
+          }
+          if ($lastName != "" && $tmp == "firstupdated")
+          {
+              $sql = "UPDATE Contacts SET lastName = '$lastName' WHERE firstName = '$firstName' AND lastName = '$oldLast' AND userID = '$userID'";
+              $result = $conn->query($sql);
+              if ($result)
+              {
+                  echo "User's last name updated!'";
+              }
+              else
+              {
+                  echo "Error: " . $sql . "" . mysql_error($conn);
+              }
+          }
+          else
+          {
+              $sql = "UPDATE Contacts SET lastName = '$lastName' WHERE firstName = '$oldFirst' AND lastName = '$oldLast' AND userID = '$userID'";
+              $result = $conn->query($sql);
+              if ($result)
+              {
+                  echo "User's last name updated!'";
+              }
+              else
+              {
+                  echo "Error: " . $sql . "" . mysql_error($conn);
+              }
+          }
+      }
+  }
+  
+  // RESULT
+  echo "User's database update complete!";
   
   $conn->close();
 }
