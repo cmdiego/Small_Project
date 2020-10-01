@@ -23,7 +23,7 @@ if ($conn->connect_error)
 }
 else
 {
-    $sql = "SELECT firstName, lastName FROM Contacts WHERE firstName LIKE '%" . $firstName . 
+    $sql = "SELECT firstName, lastName, phone, email FROM Contacts WHERE firstName LIKE '%" . $firstName . 
     "%' AND lastName LIKE '%" . $lastName . "%' AND userID = " . $userID;
 
     $result = $conn->query($sql);
@@ -37,7 +37,7 @@ else
                 $searchResults .= ",";
             }
             $searchCount++;
-            $searchResults .= '"' .$row["firstName"] . ' ' . $row["lastName"] .'"';
+            $searchResults .= '"' .$row["firstName"] . ' ' . $row["lastName"] . ' ' . $row["phone"] . ' ' . $row["email"] . '"';
         }
     }
     else
@@ -57,7 +57,7 @@ function sendResultInfoAsJson( $obj )
 
 function returnWithInfo( $searchResults )
 {
-    $retValue = '{"results":[' . $searchResults . '],"error":""}';
+    $retValue = '{"results":[' . $searchResults . ']}';
     sendResultInfoAsJson( $retValue );
 }
 
