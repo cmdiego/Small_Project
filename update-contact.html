@@ -12,7 +12,7 @@
     <meta charset="utf-8"/>
    
 </head>
-<body style="background-color: rgba(255, 241, 243, 1.0);">
+<body onload="displayContactInfo()" style="background-color: rgba(255, 241, 243, 1.0);">
     <img src="./img/decorative-banner.png" class="decorative-banner">
 
     <div class="container-fluid">
@@ -26,7 +26,7 @@
                         <a href="contacts-home.html"><img src="./img/home.png"></a><img src="./img/divider.png" class="divider">
                         <a href="about.html"><img src="./img/about.png"></a><img src="./img/divider.png" class="divider">
                         <a href="contact-us.html"><img src="./img/contact-us.png"></a><img src="./img/divider.png" class="divider">
-                        <a href="index.html"><img src="./img/logout.png" class="divider"></a>
+                        <a onclick='doLogout()'><img src="./img/logout.png" class="divider"></a>
                     </div>
                 </div>
                 <div class="row" style="margin-left: -30px">
@@ -35,19 +35,21 @@
                     </div>
                     <div class="col-md-6" style="vertical-align: center;">
                         <img src="./img/creamie-contacts-logo.png" class="website-logo">
-                        <p class="instruction-prompt" style="margin-top: 22.4%; margin-bottom: 9%; clear: right;">You are updating your previously <br>selected contact. Enter current <br>information for all fields even if the information remains the same.</p>
+                        <p class="instruction-prompt" style="margin-top: 22.4%; margin-bottom: 9%; clear: right;">Enter any contact information<br> that you would like to change.<br> You may leave fields blank.</p>
+                        <p id="first"></p><p id="last"></p>
 
                         <div class="row justify-content-center">
-                            <input type="text" class="form-control" id="contactFirstName" placeholder="First name" style="max-width: 70%; margin-bottom: 2%;">
+                            <input type="text" class="form-control" id="contactFirstName" placeholder=" First name" style="max-width: 70%; margin-bottom: 2%;">
                             <input type="text" class="form-control" id="contactLastName" placeholder="Last name" style="max-width: 70%; margin-bottom: 2%;">
                             <input type="text" class="form-control" id="contactPhone" placeholder="Phone number" style="max-width: 70%; margin-bottom: 2%;">
                             <input type="text" class="form-control" id="contactEmail" placeholder="Email address" style="max-width: 70%; margin-bottom: 2%;">
-
-                            <span id="contactUpdateResult"></span>
-
-                            <button type="button" id="updateContactButton" class="btn btn-primary" onclick="modifyContact();">Update contact</button>
+                        </div>
+                        <div class="row justify-content-center">
+                            <button type="button" id="backToSearchResultsButton" class="btn btn-primary" onclick="window.location.href='search-contacts.html'" style="margin-right: 1%; max-width: 25%;">Back</button>
+                            <button type="button" id="updateContactButton" class="btn btn-primary" onclick="modifyContact();" style="max-width: 25%;">Update contact</button>
                         </div>
 
+                        <div><span id="contactUpdateResult"></span></div>
                         <p class="cute-heart" style="margin-top: 1%; margin-bottom: -5%;">-- ♡ --</p>
                     </div>
                 </div>    

@@ -7,8 +7,10 @@ var urlBase = 'http://thisisgroup28.com/LAMPAPI';
 var extension = 'php';
 
 var userId = 0;
+var login = "";
 var firstName = "";
 var lastName = "";
+
 
 function doLogin()
 {
@@ -18,11 +20,11 @@ function doLogin()
 	
 	var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
-	// var hash = md5( password );
 	
 	document.getElementById("loginResult").innerHTML = "";
 
 	// lets add the hash after we get stuff working
+	// var hash = md5( password );
 	// var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
 	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
 	var url = urlBase + '/Login.' + extension;
@@ -33,6 +35,7 @@ function doLogin()
 	try
 	{
 		xhr.send(jsonPayload);
+		
 	
 		var jsonObject = JSON.parse( xhr.responseText );
 		
@@ -56,39 +59,63 @@ function doLogin()
 
 }
 
+// tried changing this to an asynchronous function to try to implement a sleep function
+// but it didn't work
 function doSignup()
 {
 
 	window.location.href = "signup.html";
 
 	userId = 0;
-	firstName = "";
-	lastName = "";
+	login = "";
 	
 	var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
 	var confirm = document.getElementById("loginPasswordConfirm").value;
+	
+	document.getElementById("signupResult").innerHTML = "";
+	
+	// check to see if any fields are empty
+    if (login.value === null || login === "") {
+        document.getElementById("signupResult").innerHTML = "All fields must be entered";
+        // using this to show the user the message for a few seconds but not working here
+        setTimeout(() => { console.log("waiting for user to read message!"); }, 4000);
+        return;
+    }
 
+     if (password.value === null || password === "") {
+        document.getElementById("signupResult").innerHTML = "All fields must be entered";
+        setTimeout(() => { console.log("waiting for user to read message!"); }, 4000);
+        return;
+    }
+    
+    if (confirm.value === null || confirm === "") {
+        document.getElementById("signupResult").innerHTML = "All fields must be entered";
+        setTimeout(() => { console.log("waiting for user to read message!"); }, 4000);
+        return;
+    }
+    
 	var result = password.localeCompare(confirm);
 
 	if (result !== 0) {
 
 		document.getElementById("signupResult").innerHTML = "Passwords do not match";
-		setTimeout(() => { console.log("waiting for user to read message!"); }, 2000);
+		// still looking for a function to pause the message to user, these doesn't work
+		// await sleep(4000);
+		// setTimeout(() => { console.log("waiting for user to read message!"); }, 4000);
+		sleep(4000);
 		return;
 	}
 
+    // we may add the hash after we get stuff working
 	// var hash = md5( password );
-	
-	document.getElementById("signupResult").innerHTML = "";
-
-	// lets add the hash after we get stuff working
 	// var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
+	
 	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
-
 	var url = urlBase + '/SignUp.' + extension;
 
 	var xhr = new XMLHttpRequest();
+	
 	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
@@ -96,11 +123,11 @@ function doSignup()
 		xhr.send(jsonPayload);
 	
 		var jsonObject = JSON.parse( xhr.responseText );
-	
-		userId = jsonObject.id;
-    	saveCookie();
-
-		window.location.href = "index.html";
+	    userId = jsonObject;
+        saveCookie();
+        
+        // contact is automatically logged in when cookie is saved, so go to home page
+		window.location.href = "contacts-home.html";
 	}
 	catch(err)
 	{
@@ -109,13 +136,17 @@ function doSignup()
 
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 
 function saveCookie()
 {
 	var minutes = 20;
 	var date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+	document.cookie = "login=" + login + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
 function readCookie()
@@ -127,13 +158,9 @@ function readCookie()
 	{
 		var thisOne = splits[i].trim();
 		var tokens = thisOne.split("=");
-		if( tokens[0] == "firstName" )
+		if( tokens[0] == "login" )
 		{
-			firstName = tokens[1];
-		}
-		else if( tokens[0] == "lastName" )
-		{
-			lastName = tokens[1];
+			login = tokens[1];
 		}
 		else if( tokens[0] == "userId" )
 		{
@@ -147,7 +174,6 @@ function readCookie()
 	}
 	else
 	{
-		// document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 		return userId;
 	}
 }
@@ -155,16 +181,15 @@ function readCookie()
 function doLogout()
 {
 	userId = 0;
-	firstName = "";
-	lastName = "";
-	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	login = "";
+	document.cookie = "login= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
 }
 
-
 function addContact()
 {
-
+    
+    // collect user input
 	var newFirstName = document.getElementById("contactFirstName").value;
 	var newLastName = document.getElementById("contactLastName").value;
 	var newPhone = document.getElementById("contactPhone").value;
@@ -173,43 +198,41 @@ function addContact()
 
 	// check to see if any fields are empty
     if (newFirstName.value === null || newFirstName === "") {
-        alert("newFirstName is blank");
-        document.getElementById("contactAddResult").innerHTML = "All fields must be entered"
+        document.getElementById("contactAddResult").innerHTML = "All fields must be entered";
         return;
     }
 
     if (newLastName.value === null || newLastName === "") {
-        alert("newLastName is blank");
-        document.getElementById("contactAddResult").innerHTML = "All fields must be entered"
+        document.getElementById("contactAddResult").innerHTML = "All fields must be entered";
         return;
     }
     
     if (newPhone.value === null || newPhone === "") {
-        alert("newPhone is blank");
-        document.getElementById("contactAddResult").innerHTML = "All fields must be entered"
+        document.getElementById("contactAddResult").innerHTML = "All fields must be entered";
         return;
     }
     
     if (newEmail.value === null || newEmail === "") {
-        alert("new Email is blank");
-        document.getElementById("contactAddResult").innerHTML = "All fields must be entered"
+        document.getElementById("contactAddResult").innerHTML = "All fields must be entered";
         return;
     }
 	
 	// get user ID from the cookie
 	var userId = readCookie();
-
-	// alert for testing
-	alert ("User ID is " + userId);
+	
+	// if user is not logged in right, return to login page
+	if (userId === 0){
+	    window.location.href = "index.html";
+	    return;
+	}
 
 	document.getElementById("contactAddResult").innerHTML = "";
-		
+	
+	// prepare JSON array and API address to send package
 	var jsonPayload = '{"firstName" : "' + newFirstName + '", "lastName" : "' + newLastName + '", "phone" : "' + newPhone + '", "email" : "' + newEmail + '", "ID" : ' + userId + '}';
 	var url = urlBase + '/AddContact.' + extension;
 	
-	// alert for testing
-	alert ( jsonPayload );
-
+	// create request
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -220,26 +243,21 @@ function addContact()
 			// readyState 4 means req finished & response ready, status 200 means "ok"
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
-				
+				document.getElementById("contactAddResult").innerHTML = "Contact has been added. <br> You can add another contact or go back home.";
 			}
-
 		};
 
 		xhr.send(jsonPayload);
-		alert ("JSON has been sent");
-
-        // this isn't working to give the user time to read that contact has been added
-        // may need to change this function to synchronous
-        setTimeout(() => { console.log("waiting for user to read message!"); }, 3000);
-		window.location.href = "contacts-home.html";
-
+		
+		// reset form so that user can add another contact
+		document.getElementById("userInput").reset();
+		
 	}
 	catch(err)
 	{
 		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
-	
+
 }	
 
 function searchContacts()
@@ -271,16 +289,14 @@ function searchContacts()
 				for( var i=0; i<jsonObject.results.length; i++ )
 				{
 				    
+				    // add rows and cells to table with contact information
 					var resultsTable = document.getElementById('searchResults');
-					
 					var row = resultsTable.insertRow(-1);
 					var cellResults = row.insertCell(0);
 					cellResults.id = "contactInfo" + (i);
 					cellResults.innerHTML = jsonObject.results[i];
 					
-					
 					// create Edit and Delete icons and append them to their cells
-					
 					var cellEdit = row.insertCell(1);
 					var cellRemove = row.insertCell(2);
 					
@@ -311,17 +327,19 @@ function searchContacts()
 	}
 }
 
-// this should work but can't test it until we have html set up for deleting
-// may need to add an html span for "contactDeleteResult" somewhere.
-function deleteContact(resultString, userId)
+function deleteContact(index, userId)
 {
-
-	alert("Your are deleting a contact.")
 	
     var resultsTable = document.getElementById('searchResults');
     
-    var results = resultsTable.rows[resultString].cells[0].innerHTML;
+    var results = resultsTable.rows[index].cells[0].innerHTML;
     var arr = results.split(" ", 2);
+    
+    var c = confirm("You are deleting " + arr[0] + " " + arr[1] + " from your contacts.");
+    if (c == false)
+    {
+        return;
+    }
     
 	document.getElementById("contactSearchResult").innerHTML = "";
 	
@@ -345,7 +363,10 @@ function deleteContact(resultString, userId)
 		};
 
 		xhr.send(jsonPayload);
-	
+		clearTable();
+		setTimeout(() => { console.log("waiting for DB to update!"); }, 1000);
+		setTimeout(() => { console.log("waiting for DB to update!"); }, 1000);
+	    searchContacts();
 	}
 	catch(err)
 	{
@@ -353,19 +374,34 @@ function deleteContact(resultString, userId)
 	}
 }
 
+// used to package a single contact's info for use between html pages
 function packageModifyInfo(index, userId)
 {
     
     var resultsTable = document.getElementById('searchResults');
     var results = resultsTable.rows[index].cells[0].innerHTML;
-    var arr = results.split(" ", 2);
+    var arr = results.split(" ", 4);
     
+    // store this single contact's info in local storage in order to access it on another webpage
     localStorage.setItem("firstName", arr[0]);
     localStorage.setItem("lastName", arr[1]);
+    localStorage.setItem("phone", arr[2]);
+    localStorage.setItem("email", arr[3]);
+    
     localStorage.setItem("userID", userId);
     
     window.location.href = "update-contact.html";
 }
+
+// places contact info as placeholders on the update-contact.html page
+function displayContactInfo()
+{
+    document.getElementById("contactFirstName").placeholder = localStorage.getItem("firstName");
+    document.getElementById("contactLastName").placeholder = localStorage.getItem("lastName");
+    document.getElementById("contactPhone").placeholder = localStorage.getItem("phone");
+    document.getElementById("contactEmail").placeholder = localStorage.getItem("email");
+}
+
 function modifyContact()
 {
 	document.getElementById("contactUpdateResult").innerHTML = "";
@@ -399,7 +435,15 @@ function modifyContact()
 	{
 		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
-	
-	
-	
+
 }	
+
+// clears search results table since new searches append the table unless cleared
+function clearTable()
+{
+    var table = document.getElementById('searchResults');
+    var rowCount = table.rows.length;
+    for (var i = 0; i < rowCount; i++) {
+        table.deleteRow(0);
+    }
+}

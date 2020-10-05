@@ -35,19 +35,24 @@
                     </div>
                     <div class="col-md-6" style="vertical-align: center;">
                         <img src="./img/creamie-contacts-logo.png" class="website-logo">
-                        <p class="instruction-prompt" style="margin-top: 22.4%; margin-bottom: 9%; clear: right;">Please enter the following <br>information to create a new <br>contact entry.</p>
+                        <p class="instruction-prompt" style="margin-top: 22.4%; margin-bottom: 9%; clear: right;">Please enter the followinginformation<br>to create a new contact entry.<br> 
+                                                            Please enter only numbers in the phone number field <br> without dashes or parentheses.</p>
 
                         <div class="row justify-content-center">
-                            <input type="text" class="form-control" id="contactFirstName" placeholder="First name" style="max-width: 70%; margin-bottom: 2%;">
-                            <input type="text" class="form-control" id="contactLastName" placeholder="Last name" style="max-width: 70%; margin-bottom: 2%;">
-                            <input type="text" class="form-control" id="contactPhone" placeholder="Phone number" style="max-width: 70%; margin-bottom: 2%;">
-                            <input type="text" class="form-control" id="contactEmail" placeholder="Email address" style="max-width: 70%; margin-bottom: 2%;">
-
-                            <span id="contactAddResult"></span>
-
-                            <button type="button" id="addContactButton" class="btn btn-primary" onclick="addContact();">Add contact</button>
+                            <form id="userInput" style="width: 100%" class="row justify-content-center">
+                                <input type="text" class="form-control" id="contactFirstName" placeholder="First name" style="max-width: 70%; margin-bottom: 2%;">
+                                <input type="text" class="form-control" id="contactLastName" placeholder="Last name" style="max-width: 70%; margin-bottom: 2%;">
+                                <input type="text" class="form-control" id="contactPhone" placeholder="Phone number" style="max-width: 70%; margin-bottom: 2%;">
+                                <input type="text" class="form-control" id="contactEmail" placeholder="Email address" style="max-width: 70%; margin-bottom: 2%;">
+                            </form>
+                        </div>
+                        
+                        <div class="row justify-content-center">
+                            <button type="button" id="backButton" class="btn btn-primary" onclick="window.location.href='contacts-home.html'" style="margin-right: 1%; max-width: 23%;">Back</button>
+                            <button type="button" id="addContactButton" class="btn btn-primary" onclick="addContact();" style="max-width: 23%;">Add contact</button>
                         </div>
 
+                        <div><span id="contactAddResult"></span></div>
                         <p class="cute-heart" style="margin-top: 1%; margin-bottom: -5%;">-- ♡ --</p>
                     </div>
                 </div>    

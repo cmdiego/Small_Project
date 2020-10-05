@@ -50,7 +50,7 @@
 
 .table-scroll {
   position: relative;
-  width: 50vh;
+  width: 70vh;
   overflow: auto;
   display: block;
 }
@@ -67,3 +67,4 @@
   font-family: "Shink";
   text-align: center;
 }
+

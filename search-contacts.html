@@ -26,47 +26,47 @@
                         <a href="contacts-home.html"><img src="./img/home.png"></a><img src="./img/divider.png" class="divider">
                         <a href="about.html"><img src="./img/about.png"></a><img src="./img/divider.png" class="divider">
                         <a href="contact-us.html"><img src="./img/contact-us.png"></a><img src="./img/divider.png" class="divider">
-                        <a href="index.html"><img src="./img/logout.png" class="divider"></a>
+                        <a onclick='doLogout()'><img src="./img/logout.png" class="divider"></a>
                     </div>
                 </div>
                 <div class="row" style="margin-left: -30px">
                     <div class="col-md-6">
-                        <img src="./img/featured-image.png" class="featured-image">
-                    </div>
-                    <div class="col-md-6" style="vertical-align: center;">
-                        <img src="./img/creamie-contacts-logo.png" class="website-logo">
-                        <p class="instruction-prompt" style="margin-top: 26.25%; margin-bottom: 25%;">Please enter a first or last name to <br>search through your contacts. <br>Partial matches will be shown.</p>
-
                         <div class="row justify-content-center">
-                            <input type="text" class="form-control" id="firstName" placeholder="First Name" style="max-width: 70%; margin-bottom: 2%">
-                            <input type="text" class="form-control" id="lastName" placeholder="Last Name" style="max-width: 70%; margin-bottom: 2%">
-                            <span id="contactSearchResult"></span>
-                            <button type="button" id="searchContactButton" class="btn btn-primary" onclick="searchContacts();">Search contacts</button>
-                        </div>
-
-                        <div class="row justify-content-center" style="margin-left: 10%; margin-right: 10%; margin-top: 22%;">
-                            <div class="table-scroll" style="height: 40vh;">
-                                <table class="table table-sm table-hover text-center">
+                            <div class="table-scroll" style="height: 60vh; margin-top: 5%; width:90%">
+                                <table class="table table-sm table-striped table-hover text-center">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="table-danger">Search Results</th>
-                                            <th scope="col" class="table-danger">  </th>
-                                            <th scope="col" class="table-danger">  </th>
-                                            
+                                            <th scope="col" style="background-color: rgba(255, 202, 202, 1.0); color: white">Search Results</th>
+                                            <th scope="col" style="background-color: rgba(255, 202, 202, 1.0);"></th>
+                                            <th scope="col" style="background-color: rgba(255, 202, 202, 1.0);"></th>
                                         </tr>
                                     </thead> 
-                                    
-                                    <tbody id="searchResults">
-                                                                    
+                                    <tbody id="searchResults">                               
                                     </tbody>
-                            
                                 </table>
                             </div>
                         </div>
-                        
-                        <div id="modifyContactFields">
+                    </div>
+                    <div class="col-md-6" style="vertical-align: center;">
+                        <img src="./img/creamie-contacts-logo.png" class="website-logo">
+                        <p class="instruction-prompt" style="margin-top: 26.25%; margin-bottom: 14.7%;">Please enter a first or last name to <br>search through your contacts. <br>Partial matches will be shown.</p>
+
+                        <div class="row justify-content-center"  style="margin-bottom: 3px;">
+                            <input type="text" class="form-control" id="firstName" placeholder="First Name" style="max-width: 70%; margin-bottom: 2%">
+                            <input type="text" class="form-control" id="lastName" placeholder="Last Name" style="max-width: 70%; margin-bottom: 2%">
                         </div>
-                        <p class="cute-heart" style="margin-top: 5.9%; margin-bottom: -5%;">-- ♡ --</p>
+                        <div class="row justify-content-center">
+                            <button type="button" id="clearTableButton" class="btn btn-primary" onclick="clearTable();" style="margin-right: 1%; max-width: 25%;">Clear Results</button>
+                            <button type="button" id="searchContactButton" class="btn btn-primary" onclick="searchContacts();" style="margin-left: 1%;max-width: 25%;">Search contacts</button>
+                        </div>
+                        <div class="row justify-content-center">
+                            <button type="button" id="backHomeButton" class="btn btn-primary" onclick="window.location.href='contacts-home.html'" style="margin-top: 1.5%; max-width: 25%;">Back</button>
+                        </div>
+                        <div class="row justify-content-center">
+                            <span id="contactSearchResult"></span>
+                        </div>
+
+                        <p class="cute-heart" style="margin-top: 1%;">-- ♡ --</p>
                     </div>
                 </div>    
             </div>
