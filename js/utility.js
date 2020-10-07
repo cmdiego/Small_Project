@@ -23,9 +23,6 @@ function doLogin()
 	
 	document.getElementById("loginResult").innerHTML = "";
 
-	// lets add the hash after we get stuff working
-	// var hash = md5( password );
-	// var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
 	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
 	var url = urlBase + '/Login.' + extension;
 
@@ -36,11 +33,9 @@ function doLogin()
 	{
 		xhr.send(jsonPayload);
 		
-	
 		var jsonObject = JSON.parse( xhr.responseText );
 		
 		userId = jsonObject.id;
-
 		if( userId < 1 )
 		{
 			document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
@@ -48,7 +43,7 @@ function doLogin()
 		}
 
 		saveCookie();
-	
+	    
 		window.location.href = "contacts-home.html";
 		
 	}
@@ -59,8 +54,6 @@ function doLogin()
 
 }
 
-// tried changing this to an asynchronous function to try to implement a sleep function
-// but it didn't work
 function doSignup()
 {
 
@@ -100,17 +93,11 @@ function doSignup()
 	if (result !== 0) {
 
 		document.getElementById("signupResult").innerHTML = "Passwords do not match";
-		// still looking for a function to pause the message to user, these doesn't work
-		// await sleep(4000);
-		// setTimeout(() => { console.log("waiting for user to read message!"); }, 4000);
-		sleep(4000);
+		// still looking for a function to pause the message to user before returning
+		// but unable to find anything that works so far
 		return;
 	}
 
-    // we may add the hash after we get stuff working
-	// var hash = md5( password );
-	// var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
-	
 	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
 	var url = urlBase + '/SignUp.' + extension;
 
@@ -135,11 +122,6 @@ function doSignup()
 	}
 
 }
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 
 function saveCookie()
 {
@@ -263,14 +245,16 @@ function addContact()
 function searchContacts()
 {
 
+    // collect user input
 	var firstName = document.getElementById("firstName").value;
 	var lastName = document.getElementById("lastName").value;
+	
 	var userID = readCookie();
 	
 	document.getElementById("contactSearchResult").innerHTML = "";
 
+    // create JSON payload and API address
 	var jsonPayload = '{"firstName" : "' + firstName  + '", "lastName" : "' + lastName + '", "ID" : ' + userId + '}';
-
 	var url = urlBase + '/SearchContact.' + extension;
 
 	var xhr = new XMLHttpRequest();
@@ -332,9 +316,12 @@ function deleteContact(index, userId)
 	
     var resultsTable = document.getElementById('searchResults');
     
+    // get contact info from search results table
     var results = resultsTable.rows[index].cells[0].innerHTML;
+    // split contact results string and store first and last name into an array
     var arr = results.split(" ", 2);
     
+    // user must confirm before deleting contact
     var c = confirm("You are deleting " + arr[0] + " " + arr[1] + " from your contacts.");
     if (c == false)
     {
@@ -343,6 +330,7 @@ function deleteContact(index, userId)
     
 	document.getElementById("contactSearchResult").innerHTML = "";
 	
+	// create json payload and API address
 	var jsonPayload = '{"firstName" : "' + arr[0] + '", "lastName" : "' + arr[1] + '", "ID" : ' + userId + '}';
 	var url = urlBase + '/DeleteContact.' + extension;
 	
@@ -356,13 +344,14 @@ function deleteContact(index, userId)
 			// readyState 4 means req finished & response ready, status 200 means "ok"
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				// changed this line already
 				document.getElementById("contactSearchResult").innerHTML = "Contact has been deleted";
 			}
 
 		};
 
 		xhr.send(jsonPayload);
+		
+		// clear table, let db update the deletion and show new search results
 		clearTable();
 		setTimeout(() => { console.log("waiting for DB to update!"); }, 1000);
 		setTimeout(() => { console.log("waiting for DB to update!"); }, 1000);
@@ -377,7 +366,7 @@ function deleteContact(index, userId)
 // used to package a single contact's info for use between html pages
 function packageModifyInfo(index, userId)
 {
-    
+    // get contact info from search results table and split string
     var resultsTable = document.getElementById('searchResults');
     var results = resultsTable.rows[index].cells[0].innerHTML;
     var arr = results.split(" ", 4);
@@ -390,6 +379,7 @@ function packageModifyInfo(index, userId)
     
     localStorage.setItem("userID", userId);
     
+    // navigate to the update contact page after info stored in local storage
     window.location.href = "update-contact.html";
 }
 
@@ -406,11 +396,13 @@ function modifyContact()
 {
 	document.getElementById("contactUpdateResult").innerHTML = "";
 	
+	// collect user input
 	var firstName = document.getElementById("contactFirstName").value;
 	var lastName = document.getElementById("contactLastName").value;
 	var phone = document.getElementById("contactPhone").value;
 	var email = document.getElementById("contactEmail").value;
 
+    // create JSON payload and API address
 	var jsonPayload = '{"oldFirst" : "' + localStorage.getItem("firstName") + '", "oldLast" : "' + localStorage.getItem("lastName") + '","firstName" : "' + firstName + '", "lastName" : "' + lastName + '","phone" : "' + phone + '", "email" : "' + email + '", "userID" : ' + localStorage.getItem("userID") + '}';	
 	var url = urlBase + '/UpdateContact.' + extension;
 	
