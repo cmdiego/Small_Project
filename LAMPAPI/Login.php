@@ -14,7 +14,7 @@
 	}
 	else
 	{
-		// echo "Connection established!";
+		echo "Connection established!";
 
 		// Create SQL query string
 		$sql = "SELECT ID, login FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "'";
@@ -66,7 +66,7 @@
 	
 	function returnWithInfo($id, $login)
 	{
-		$retValue = '{"id":' . $id . ',"login":"' . $login . '"}';
+		$retValue = '{"ID" :' . $id . ',"Login" :"' . $login . '"}'; // ? For some reason login and id are switched in the display
 
 		sendResultInfoAsJson($retValue);
 	}

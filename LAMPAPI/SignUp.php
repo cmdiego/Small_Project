@@ -22,7 +22,7 @@ if ($conn->connect_error)
 }
 else
 {
-    // echo "Connection established!";
+    echo "Connection established!";
 
     // SQL query string
     $sql = "INSERT INTO Users (login, password) 
@@ -31,9 +31,9 @@ else
     $result = $conn->query($sql);
     if ($result)
     {
-        // echo "User '$login' was successfully added to the database";
+        echo "User . '$login' was successfully added to the database";
 
-        // New SQL query string to return ID of user to front-end
+            // New SQL query string to return ID of user to front-end
         $sql = "SELECT ID FROM Users WHERE login = '$login'";
 
         $result = $conn->query($sql);
@@ -43,7 +43,7 @@ else
             $row = $result->fetch_assoc();
             $id = $row["ID"];
             // Sucessful search
-            // echo "Login: " . $login . " ID: " . $id . "\n";
+            echo "Login: " . $login " ID: " . $id
 
             returnWithInfo($id);
         }
@@ -67,7 +67,8 @@ function sendResultInfoAsJson( $obj )
 
 function returnWithInfo( $searchResults )
 {
-    sendResultInfoAsJson( $searchResults );
+    $retValue = '{"results":[' . $searchResults . ']}';
+    sendResultInfoAsJson( $retValue );
 }
 
 function returnWithError( $err )
