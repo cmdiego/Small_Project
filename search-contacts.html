@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- COP4331 Fall 2020
+     Small Group Project Index Page
+     Group #28 -->
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/creamie-contacts.css">
+    <link href="./img/favicon.png" rel="shortcut icon"/>
+    <title>Creamie Contacts - Home</title>
+    <meta charset="utf-8"/>
+   
+</head>
+<body style="background-color: rgba(255, 241, 243, 1.0);">
+    <img src="./img/decorative-banner.png" class="decorative-banner">
+
+    <div class="container-fluid">
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 content-background">
+                <div class="row">
+                    <div class="col-md-12 nav-bar">
+                        <a href="contacts-home.html"><img src="./img/home.png"></a><img src="./img/divider.png" class="divider">
+                        <a href="about.html"><img src="./img/about.png"></a><img src="./img/divider.png" class="divider">
+                        <a href="contact-us.html"><img src="./img/contact-us.png"></a><img src="./img/divider.png" class="divider">
+                        <a onclick='doLogout()'><img src="./img/logout.png" class="divider"></a>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: -30px">
+                    <div class="col-md-6">
+                        <div class="row justify-content-center">
+                            <div class="table-scroll" style="height: 60vh; margin-top: 5%; width:90%">
+                                <table class="table table-sm table-striped table-hover text-center">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="background-color: rgba(255, 202, 202, 1.0); color: white">Search Results</th>
+                                            <th scope="col" style="background-color: rgba(255, 202, 202, 1.0);"></th>
+                                            <th scope="col" style="background-color: rgba(255, 202, 202, 1.0);"></th>
+                                        </tr>
+                                    </thead> 
+                                    <tbody id="searchResults">                               
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="vertical-align: center;">
+                        <img src="./img/creamie-contacts-logo.png" class="website-logo">
+                        <p class="instruction-prompt" style="margin-top: 26.25%; margin-bottom: 14.7%;">Please enter a first or last name to <br>search through your contacts. <br>Partial matches will be shown.</p>
+
+                        <div class="row justify-content-center"  style="margin-bottom: 3px;">
+                            <input type="text" class="form-control" id="firstName" placeholder="First Name" style="max-width: 70%; margin-bottom: 2%">
+                            <input type="text" class="form-control" id="lastName" placeholder="Last Name" style="max-width: 70%; margin-bottom: 2%">
+                        </div>
+                        <div class="row justify-content-center">
+                            <button type="button" id="clearTableButton" class="btn btn-primary" onclick="clearTable();" style="margin-right: 1%; max-width: 25%;">Clear Results</button>
+                            <button type="button" id="searchContactButton" class="btn btn-primary" onclick="searchContacts();" style="margin-left: 1%;max-width: 25%;">Search contacts</button>
+                        </div>
+                        <div class="row justify-content-center">
+                            <button type="button" id="backHomeButton" class="btn btn-primary" onclick="window.location.href='contacts-home.html'" style="margin-top: 1.5%; max-width: 25%;">Back</button>
+                        </div>
+                        <div class="row justify-content-center">
+                            <span id="contactSearchResult"></span>
+                        </div>
+
+                        <p class="cute-heart" style="margin-top: 1%;">-- ♡ --</p>
+                    </div>
+                </div>    
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+
+
+<script src="/js/jquery-3.5.1.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/utility.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+.content-background {
+  background-color: rgba(255, 255, 255, 1.0); 
+  text-align: center; 
+  border-radius: 15px; 
+  filter: drop-shadow(10px 5px 4px rgba(0, 0, 0, 0.10))
+}
+
+.decorative-banner {
+  width: 100%; 
+  margin-bottom: 2%;
+}
+
+.nav-bar {
+  background-color: rgba(255, 202, 202, 1.0); 
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px; 
+  display: flex; 
+  justify-content: space-around;
+  font-size: 200%;
+}
+
+.divider {
+  max-height: 80%;
+  width: auto;
+}
+
+.featured-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-bottom-left-radius: 15px;
+}
+
+.website-logo {
+  max-height: 15%;
+  width: auto;
+  margin-top: 1%;
+  float: right;
+}
+
+.website-bio {
+  max-height: 15%;
+  width: auto;
+}
+
+.instruction-prompt {
+  color: rgba(113, 93, 93, 1.0);
+  font-size: 120%;
+  text-align: center;
+}
+
+.table-scroll {
+  position: relative;
+  width: 70vh;
+  overflow: auto;
+  display: block;
+}
+
+.signup-toggle {
+  font-size: 80%;
+  color: rgba(204, 204, 204, 1.0);
+  line-height: 80%
+}
+
+.cute-heart {
+  color: rgba(113, 93, 93, 1.0);
+  font-size: 300%;
+  font-family: "Shink";
+  text-align: center;
+}
+
